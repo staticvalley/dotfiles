@@ -1,0 +1,13 @@
+base-devel
+neovim
+firefox
+git
+stow
+picom
+kitty
+rofi
+i3status-rust
+wget
+neofetch
+libreoffice
+
