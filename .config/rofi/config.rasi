@@ -1,6 +1,6 @@
 /*******************************************************************************
- * ROFI Color theme
- * User: u16ptr
+ * slightly modified kanagawa theme created by u16ptr
+ * https://github.com/u16ptr/kanagawa-rofi/blob/main/kanagawa.rasi
  ********************************************************************************/
 
 * {
@@ -14,6 +14,7 @@
   cRed: #e46876;
   cWhite: #c5c9c5;
   cYellow: #e6c384;
+  cLeaderColor: @cBlue;
   gLineCount: 10;
 }
 
@@ -21,8 +22,10 @@ window {
   padding: 0;
   width: 540;
   background-color: @cBackground;
+  border: 2;
+  border-color: @cLeaderColor;
   border: 1;
-  border-color: @cGreen;
+  border-color: @cLeaderColor;
 }
 
 mainbox {
@@ -39,11 +42,13 @@ inputbar {
 }
 
 prompt {
+  padding: 0 5 0 0;
   background-color: transparent;
-  text-color: @cGreen;
+  text-color: @cLeaderColor;
 }
 
 entry {
+  placeholder: "";
   background-color: transparent;
   text-color: @cForeground;
 }
@@ -63,7 +68,7 @@ textbox-sep {
 message {
   margin: 0 0 1 0;
   border: 1;
-  border-color: @cGreen;
+  border-color: @cLeaderColor;
 }
 
 message,
@@ -85,11 +90,12 @@ listview {
 scrollbar {
   background-color: transparent;
   handle-width: 2;
-  handle-color: @cGreen;
+  handle-color: @cLeaderColor;
 }
 
 element {
   padding: 2 4;
+  children: [ element-icon, element-text ];
 }
 
 element-icon {
@@ -97,16 +103,23 @@ element-icon {
   size: 12;
 }
 
-element.normal,
-element-icon.normal,
-element-text.normal {
-  background-color: transparent;
+element normal.normal,
+element normal.urgent,
+element normal.active {
+  background-color: @cBackground;
   color: @cForeground;
 }
 
-element.selected,
-element-icon.selected,
-element-text.selected {
-  background-color: @cGreen;
+element selected.normal,
+element selected.urgent,
+element selected.active {
+  background-color: @cLeaderColor;
   color: @cBackground;
+}
+
+element alternate.normal,
+element alternate.urgent,
+element alternate.active {
+  background-color: @cBackground;
+  color: @cForeground;
 }
