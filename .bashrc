@@ -23,6 +23,8 @@ export BAT_THEME="base16-256"
 # general aliases
 alias ls='exa'
 alias ll='exa -l'
+alias lsa='exa -a'
+alias lla='exa -la'
 alias lt='exa --tree'
 
 alias cat="bat"
