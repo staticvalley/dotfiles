@@ -1,0 +1,53 @@
+#!/usr/bin/env sh
+
+# calendar script
+# https://github.com/vivien/i3blocks-contrib/blob/master/calendar/calendar
+
+WIDTH=${WIDTH:-200}
+HEIGHT=${HEIGHT:-200}
+DATEFMT=${DATEFMT:-"+%a %d.%m.%Y %H:%M:%S"}
+SHORTFMT=${SHORTFMT:-"+%H:%M:%S"}
+
+OPTIND=1
+while getopts ":f:W:H:" opt; do
+    case $opt in
+        f) DATEFMT="$OPTARG" ;;
+        W) WIDTH="$OPTARG" ;;
+        H) HEIGHT="$OPTARG" ;;
+        \?)
+            echo "Invalid option: -$OPTARG" >&2
+            exit 1
+            ;;
+        :)
+            echo "Option -$OPTARG requires an argument." >&2
+            exit 1
+            ;;
+    esac
+done
+
+case "$BLOCK_BUTTON" in
+  1|2|3) 
+
+        # Get the current screen's geometry
+        eval $(xdotool getmouselocation --shell)
+        eval $(xrandr | awk -v x=$X -v y=$Y '
+            $0 ~ " connected" {
+                split($4, res, "+")
+                if (x >= res[2] && x < res[2] + res[1] && y >= res[3] && y < res[3] + res[2]) {
+                    print "SCREEN_WIDTH=" res[1] ";SCREEN_HEIGHT=" res[2] ";SCREEN_X=" res[3] ";SCREEN_Y=" res[4]
+                }
+        }')
+
+        # Calculate position for the popup in the right corner of the screen
+        posX=$(($SCREEN_X + $SCREEN_WIDTH - 5))
+        posY=$(($SCREEN_Y + 5))
+
+	i3-msg -q "exec yad --calendar \
+        --width=$WIDTH --height=$HEIGHT \
+	    --undecorated --fixed \
+	    --close-on-unfocus --no-buttons \
+	    --posx=$posX --posy=$posY \
+	    > /dev/null"
+esac
+echo "$LABEL$(date "$DATEFMT")"
+echo "$LABEL$(date "$SHORTFMT")"

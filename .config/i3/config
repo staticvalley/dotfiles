@@ -18,10 +18,15 @@ exec --no-startup-id flameshot
 # autostart nitrogen (wallpaper)
 exec --no-startup-id nitrogen --restore
 
-
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+
+#
+# window positioning configurations
+#
+
+for_window [class="Yad"] floating enable
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -44,17 +49,17 @@ gaps outer 5
 default_border normal 3
 
 # color guide
-# primary:      (black) #0c0c0c
-# secondary:    (white) #faf9f6
-# urgent:       (red)   #fe5f55
+# primary:      (black) #181616
+# secondary:    (white) #c5c9c5
+# urgent:       (red)   #c4746e
 
 # window border colors
 # class                 border  backgr. text    indicator child_border
-client.focused          #0c0c0c #0c0c0c #faf9f6 #0c0c0c   #0c0c0c
-client.focused_inactive #0c0c0c #0c0c0c #faf9f6 #0c0c0c   #0c0c0c
-client.unfocused        #0c0c0c #0c0c0c #faf9f6 #0c0c0c   #0c0c0c
-client.urgent           #fe5f55 #fe5f55 #faf9f6 #fe5f55   #fe5f55
-client.placeholder      #0c0c0c #0c0c0c #faf9f6 #0c0c0c   #0c0c0c
+client.focused          #8a9a7b #8a9a7b #181616 #8a9a7b   #8a9a7b
+client.focused_inactive #181616 #181616 #c5c9c5 #181616   #181616
+client.unfocused        #181616 #181616 #c5c9c5 #181616   #181616
+client.urgent           #c4746e #c4746e #c5c9c5 #c4746e   #c4746e
+client.placeholder      #181616 #181616 #c5c9c5 #181616   #181616
 
 # move floating windows with mouse
 floating_modifier $mod
@@ -168,15 +173,16 @@ bar {
     position top
     padding 0 2px 0 2px
     tray_output none
-    status_command i3status-rs $HOME/.config/i3status-rust/config.toml
+    separator_symbol "┆"
+    status_command i3blocks -c $HOME/.config/i3blocks/config
     colors {
         separator #a6a5a4
-        background #0c0c0c
+        background #181616
         statusline #a6a5a4
 	# workspace	  #bordr. #bckgr. #text
-        focused_workspace  #0c0c0c #509673 #faf9f6
-        active_workspace   #0c0c0c #878685 #faf9f6
-        inactive_workspace #0c0c0c #878685 #faf9f6 
-	urgent_workspace   #0c0c0c #fe5f55 #faf9f6
+        focused_workspace  #8a9a7b #8a9a7b #181616
+        active_workspace   #8a9a7b #181616 #c5c9c5
+        inactive_workspace #8a9a7b #181616 #c5c9c5 
+	urgent_workspace   #c4746e #181616 #c5c9c5
     }
 }

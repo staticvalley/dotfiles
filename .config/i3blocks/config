@@ -1,0 +1,13 @@
+# global properties
+command=status_scripts/$BLOCK_NAME
+markup=pango
+
+[USER_HOSTNAME]
+command=echo "<span foreground=\"#8ba4b0\">$(whoami)</span>@<span foreground=\"#c4746e\">$(cat /etc/hostname )</span>"
+interval=once
+
+[calendar]
+command=status_scripts/calendar
+interval=1 
+HEIGHT=180
+WIDTH=220
