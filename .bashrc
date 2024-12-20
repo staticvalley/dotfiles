@@ -18,10 +18,14 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 export LESS="-R"
 
+export BAT_THEME="base16-256"
+
 # general aliases
 alias ls='exa'
 alias ll='exa -l'
 alias lt='exa --tree'
+
+alias cat="bat"
 
 alias grep='rg'
 alias imgv='kitten icat'
