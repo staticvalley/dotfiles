@@ -53,4 +53,4 @@ source ~/.bash_git
 PROMPT_COMMAND='PS1_CMD1=$(__git_ps1 " (%s)")' 
 
 # set prompt
-PS1='${BLUE}\u${RESET}@${RED}\h${RESET} ${GREEN}\w${YELLOW}${PS1_CMD1}${RESET} λ '
+PS1='\[${BLUE}\]\u\[${RESET}\]@\[${RED}\]\h\[${RESET}\] \[${GREEN}\]\w\[${YELLOW}\]${PS1_CMD1}\[${RESET}\] λ '
