@@ -14,7 +14,7 @@
   cRed: #e46876;
   cWhite: #c5c9c5;
   cYellow: #e6c384;
-  cLeaderColor: @cBlue;
+  cLeaderColor: @cGreen;
   gLineCount: 10;
 }
 
