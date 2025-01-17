@@ -28,12 +28,19 @@ exec --no-startup-id nm-applet
 
 for_window [class="Yad"] floating enable
 
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+# pipewire-pulse
+bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
+bindsym XF86AudioMute --release exec pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5%
+bindsym XF86AudioLowerVolume --release exec pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5%
+bindsym XF86AudioRaiseVolume --release exec pkill -RTMIN+1 i3blocks
+
+# media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # window font
 font pango:Terminus (TTF) 12px
@@ -174,7 +181,8 @@ bar {
     padding 0 2px 0 2px
     tray_output none
     separator_symbol "┆"
-    status_command i3blocks -c $HOME/.config/i3blocks/config
+    status_command 2>/tmp/i3blocks.err i3blocks -vvvvv -c $HOME/.config/i3blocks/config | tee /tmp/i3blocks.out
+    #status_command i3blocks -c $HOME/.config/i3blocks/config
     colors {
         separator #a6a5a4
         background #181616
