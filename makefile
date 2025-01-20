@@ -1,5 +1,5 @@
 # app install script
 
 all:
-	sudo pacman -Syyu - < package_list.txt
+	sudo pacman -Syyu --needed - < package_list.txt
 	stow .
