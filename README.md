@@ -1,5 +1,5 @@
 # 🗂 .dotfiles
-dotfiles for my minimsl arch linux setup
+dotfiles for my minimal arch linux setup
 
 ## 🖥️ desktop preview
 ![desktop preview](./display.png)
