@@ -40,6 +40,7 @@ return {
       local luasnip = require("luasnip")
       luasnip.config.setup({})
 
+      -- check menu appearence readme
       local lspkind = require("lspkind")
       local kind_icons = {
         Text = "  ",
@@ -81,13 +82,14 @@ return {
             border = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" },
             winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:PmenuSel,Search:None",
             col_offset = -3,
-            side_padding = 0,
+            side_padding = 1,
             scrollbar = false,
             scrolloff = 10,
           }),
           documentation = cmp.config.window.bordered({
             border = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" },
             winhighlight = "Normal:Normal,FloatBorder:Normal,CursorLine:PmenuSel,Search:None",
+            side_padding = 2,
           }),
         },
         formatting = {
